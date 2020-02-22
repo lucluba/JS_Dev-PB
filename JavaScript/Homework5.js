@@ -82,12 +82,58 @@
 // || 3. Write a function that rotates a list by k elements.  Try solving this without creating a copy of the list.
 // -----------------------------------------------------------------------------
 
+const process = require('process');
+const [,,rotateValue] = process.argv;
+
+const array = [1,2,3,4,5,6];
+
+(function rotateArray (arr, value=3) {
+  const resultArr = connectArrays(arr, removeFromFront(arr, value));
+  showResult(resultArr);
+})(array, rotateValue);
+
+function showResult (resultMessage) {
+  console.log(resultMessage);
+}
+
+function removeFromFront (arr, counter) {
+  return arr.splice(0, counter);
+}
+
+function connectArrays (arr1, arr2) {
+  return arr1.concat(arr2);
 
 // -----------------------------------------------------------------------------
 // || 4. Write a class that prints the list of the first n Fibonacci numbers. 
 // -----------------------------------------------------------------------------
 
-
+class FibonacciSequence {
+    _fibonacciSeries;
+  
+    get fibonacciSeries () {
+      return this._fibonacciSeries;
+    }
+  
+    set fibonacciSeries (num) { 
+      this._fibonacciSeries = [1];
+      for (let i=1; i<num; i++) {
+        const nextFibonacciNum = sum(...giveLastTwoNum(this._fibonacciSeries));
+        this._fibonacciSeries.push(nextFibonacciNum);
+      }
+    }
+  }
+  
+  const fibonacci = new FibonacciSequence();
+  fibonacci.fibonacciSeries = 10;
+  console.log(fibonacci.fibonacciSeries);
+  
+  function sum (a, b=0) {
+    return a+b;
+  }
+  
+  function giveLastTwoNum (arr) {
+    return [arr[arr.length-1], arr[arr.length-2]];
+  }
 
 // -----------------------------------------------------------------------------
 // || 5. Write a code that takes a number and returns a list of its digits.
