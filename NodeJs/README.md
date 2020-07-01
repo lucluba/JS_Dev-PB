@@ -1,0 +1,1 @@
+Quotes app for NodeJS postgraduate studies
